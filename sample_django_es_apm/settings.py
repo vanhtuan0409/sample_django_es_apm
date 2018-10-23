@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'elasticapm.contrib.django',
     'sample_api.apps.SampleApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+ELASTIC_APM = {
+  'SERVICE_NAME': 'sample_api',
+  'SERVER_URL': 'http://localhost:8200',
+  'SECRET_TOKEN': 'xxVpmQB2HMzCL9PgBHVrnxjNXXw5J7bd79DFm6sjBJR5HPXDhcF8MSb3vv4bpg44',
+  'LOG_LEVEL': 'debug',
+  'DEBUG': True,
+}
+
 MIDDLEWARE = [
+    'elasticapm.contrib.django.middleware.TracingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
